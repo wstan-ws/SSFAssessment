@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register Event</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        
+        <h1>Register Event</h1>
+        <br>
+        <h6>You have chosen to register for the following event:</h6>
+
+        <h4 data-th-text="${event.eventName}">Event Name</h4>
+        <h4 data-th-text="${#dates.format(new java.util.Date(event.eventDate), 'dd-MM-yyyy')}">Event Date</h4>
+        <br>
+        <div class="container">
+            <form method="POST" data-th-action="@{/registration/register}" data-th-object="${eventRegister}">
+                <div class="mb-3">
+                    <label for="fullName" class="form-label"><strong>Full Name</strong></label>
+                    <input type="text" class="form-control" name="fullName" data-th-field="*{fullName}">
+                </div>
+                <div class="alert danger-alert" data-th-if="${#fields.hasErrors('fullName')}" data-th-errors="*{fullName}"></div>
+
+                <div class="mb-3">
+                    <label for="birthDate" class="form-label"><strong>DOB</strong></label>
+                    <input type="date" class="form-control" name="birthDate" data-th-field="*{birthDate}">
+                </div>
+                <div class="alert danger-alert" data-th-if="${#fields.hasErrors('birthDate')}" data-th-errors="*{birthDate}"></div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label"><strong>Email</strong></label>
+                    <input type="email" class="form-control" name="email" data-th-field="*{email}">
+                </div>
+                <div class="alert danger-alert" data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></div>
+
+                <div class="mb-3">
+                    <label for="mobileNumber" class="form-label"><strong>Mobile No</strong></label>
+                    <input type="text" class="form-control" name="mobileNumber" data-th-field="*{mobileNumber}">
+                </div>
+                <div class="alert danger-alert" data-th-if="${#fields.hasErrors('mobileNumber')}" data-th-errors="*{mobileNumber}"></div>
+
+                <div class="mb-3">
+                    <label for="gender" class="form-label"><strong>Gender</strong></label>
+                    <input type="text" class="form-control" name="gender" data-th-field="*{gender}">
+                </div>
+                <div class="alert danger-alert" data-th-if="${#fields.hasErrors('gender')}" data-th-errors="*{gender}"></div>
+
+                <div class="mb-3">
+                    <label for="ticketsRequested" class="form-label"><strong>Number of Tickets</strong></label>
+                    <input type="number" class="form-control" name="ticketsRequested" data-th-field="*{ticketsRequested}">
+                </div>
+                <div class="alert danger-alert" data-th-if="${#fields.hasErrors('ticketsRequested')}" data-th-errors="*{ticketsRequested}"></div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </body>
+</html>
