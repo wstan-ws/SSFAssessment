@@ -1,12 +1,7 @@
 package vttp.ssf.assessment.eventmanagement.controllers;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,9 +38,9 @@ public class RegistrationController {
 
         LocalDate startOfToday = LocalDate.now();
         long today = startOfToday.toEpochDay() * (1000 * 60 * 60 * 24);
-        System.out.printf(">>> Today: %s\n", startOfToday);
-        System.out.printf(">>> Today: %s\n", today);
-        System.out.printf(">>> birthDate: %s\n", register.getBirthDate().getTime());
+        // System.out.printf(">>> Today: %s\n", startOfToday);
+        // System.out.printf(">>> Today: %s\n", today);
+        // System.out.printf(">>> birthDate: %s\n", register.getBirthDate().getTime());
 
         if (((today - register.getBirthDate().getTime()) / (1000 * 60 * 60 * 24 * 365)) < 21) {
             FieldError err = new FieldError("eventregister", "birthDate", "Age cannot be below 21");
@@ -55,8 +50,8 @@ public class RegistrationController {
         }
 
         if (register.getTicketsRequested() + event.getParticipants() > event.getEventSize()) {
-            System.out.printf(">>> Added: %s\n", register.getTicketsRequested() + event.getParticipants());
-            System.out.printf(">>> Event Size: %s\n", event.getEventSize());
+            // System.out.printf(">>> Added: %s\n", register.getTicketsRequested() + event.getParticipants());
+            // System.out.printf(">>> Event Size: %s\n", event.getEventSize());
             FieldError err = new FieldError("eventregister", "ticketsRequested", "Max occupancy reached");
             result.addError(err);
             model.addAttribute("error", err.getDefaultMessage());
